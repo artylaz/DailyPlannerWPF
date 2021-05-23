@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DailyPlannerWPF", "DailyPlannerWPF\DailyPlannerWPF.csproj", "{AB33FE80-EACF-43FF-8E4F-E6A2BB24C89C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB33FE80-EACF-43FF-8E4F-E6A2BB24C89C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB33FE80-EACF-43FF-8E4F-E6A2BB24C89C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB33FE80-EACF-43FF-8E4F-E6A2BB24C89C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB33FE80-EACF-43FF-8E4F-E6A2BB24C89C}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97F2CE31-0921-41CF-994F-1A81F6EBF1D0}
+	EndGlobalSection
+EndGlobal

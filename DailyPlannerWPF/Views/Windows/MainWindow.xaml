@@ -1,0 +1,91 @@
+﻿<Window x:Class="DailyPlannerWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:DailyPlannerWPF.ViewModels.WindowsViewModel"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:ico="http://schemas.fontawesome.com/icons/"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1000"  
+        WindowState="Normal" AllowsTransparency="True" 
+        ResizeMode="CanResize" WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" MinWidth="1000" MinHeight="600" 
+        Background="#FF2D2D30" Icon="/Icons/Icon.ico">
+
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction
+                Command="{Binding  DragMoveCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid Background="#FF2F2F2F">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+
+        <Grid x:Name="GridMenu" Grid.Column="0" Background="#FF252526" Width="150">
+
+            <Canvas>
+
+
+                <StackPanel Background="#FF252526" Canvas.Left="0" Width="150" Canvas.Top="188">
+
+                    <Button x:Name="ButtonHome" Content="Дом" Command="{Binding OpenHomeCommand}"
+                            Height="50" Background="{Binding BackgroundHome}"  BorderBrush="{x:Null}" Style="{StaticResource ButtonMenu }" />
+                    <Button x:Name="ButtonTasks" Content="Задачи" Command="{Binding OpenTasksCommand}" 
+                            Margin="0 10 0 0" Background="{Binding BackgroundTasks}" Height="50" Style="{StaticResource ButtonMenu }"  />
+                    <Button x:Name="ButtonNotes" Content="События" Command="{Binding OpenEvensCommand}"                   
+                            Margin="0 10 0 0" Background="{Binding BackgroundEvents}" Height="50" Style="{StaticResource ButtonMenu }"   />
+                    <Button x:Name="ButtonMeetings" Content="Заметки" Command="{Binding OpenNotesCommand}" 
+                            Margin="0 10 0 0 " Background="{Binding BackgroundNotes}" Height="50" Style="{StaticResource ButtonMenu }"  />
+
+                </StackPanel>
+
+                <Border Grid.Column="0" Margin="{Binding CursorMargin}" 
+                        Height="50" Width="10" Background="#FF1E59FD"/>
+
+                <StackPanel Orientation="Horizontal" Canvas.Left="33" Canvas.Bottom="0" Canvas.Top="559">
+
+                    <Button Command="{Binding OpenSettingsWindowCommand}" Margin="0 0 30 0" Height="30" Width="30" 
+                        Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                        <Grid>
+                            <Grid.Background>
+                                <SolidColorBrush Color="#FF252526" Opacity="0"/>
+                            </Grid.Background>
+                            <ico:SvgAwesome Icon="Solid_Cog" Foreground="#FF1E59FD"/>
+                        </Grid>
+                    </Button>
+
+                    <Button Command="{Binding CloseMainWindowCommand}"  Height="30" Width="30" 
+                        Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                        <Grid>
+                            <Grid.Background>
+                                <SolidColorBrush Color="#FF252526" Opacity="0"/>
+                            </Grid.Background>
+                            <ico:SvgAwesome Icon="Solid_SignOutAlt" Foreground="#FF1E59FD"/>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+
+                <Image Source="/Icons/Icon.ico" Width="65" Height="61"  Canvas.Left="45" Canvas.Top="40"/>
+
+            </Canvas>
+
+        </Grid>
+
+        <Frame 
+            Grid.Column="1" 
+            Content="{Binding CurrentPage}"
+            NavigationUIVisibility="Hidden"/>
+
+    </Grid>
+</Window>

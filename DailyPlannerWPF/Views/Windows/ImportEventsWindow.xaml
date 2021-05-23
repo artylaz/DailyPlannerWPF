@@ -1,0 +1,94 @@
+﻿<Window x:Class="DailyPlannerWPF.Views.Windows.ImportEventsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DailyPlannerWPF.Views.Windows"
+        xmlns:vm="clr-namespace:DailyPlannerWPF.ViewModels.WindowsViewModel"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:ico="http://schemas.fontawesome.com/icons/"
+        mc:Ignorable="d"
+        Title="AddNoteWindow" Height="429.2" Width="698.4"
+        WindowState="Normal" AllowsTransparency="True" 
+        ResizeMode="CanResize" WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        Background="#FF2D2D30" 
+        ScrollViewer.VerticalScrollBarVisibility="Auto" 
+        ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction
+                Command="{Binding DragMoveCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Window.DataContext>
+        <vm:ImportEventsWindowViewModel/>
+    </Window.DataContext>
+
+    <Border BorderBrush="#FF252526" BorderThickness="2">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"></RowDefinition>
+                <RowDefinition Height="134*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Canvas Grid.Row="0" Background="#FF252526" >
+
+                <Button  Command="{Binding CloseWindowCommand}" Canvas.Right="2" Canvas.Top="2.5"  
+                    Background="{x:Null}" BorderBrush="{x:Null}" Width="22" Height="20">
+                    <Grid>
+                        <Grid.Background>
+                            <SolidColorBrush Color="#FF252526" Opacity="0"/>
+                        </Grid.Background>
+                        <ico:SvgAwesome Icon="Solid_Times" Foreground="#FF1E59FD"/>
+                    </Grid>
+                </Button>
+
+            </Canvas>
+
+            <StackPanel Grid.Row="1">
+                <ItemsControl Margin="40 20 40 30" ItemsSource="{Binding Events}" Background="White" Height="300">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0 0 0 3" Background="#FFF7F7F7">
+                                <StackPanel Orientation="Horizontal" Margin="5 5 0 0"  >
+                                    <Border Width="10" Background="#FF252526"/>
+                                    <StackPanel Margin="5 0 0 0">
+                                        <TextBlock Text="{Binding Name}"/>
+                                        <TextBlock Text="{Binding Place}"/>
+                                        <TextBlock>
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}C {0} {1} по {2} {3}">
+                                                    <Binding Path="StartDate"/>
+                                                    <Binding Path="StartTime"/>
+                                                    <Binding Path="EndDate"/>
+                                                    <Binding Path="EndTime"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                    <ItemsControl.Template>
+                        <ControlTemplate>
+                            <ScrollViewer Background="#FFF0F1EB" VerticalScrollBarVisibility="Auto" x:Name="ScrollViewer" Padding="{TemplateBinding Padding}">
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+
+                </ItemsControl>
+                <Button Command="{Binding SaveCommand}" Content="Сохранить" Width="85" Height="25" Style="{StaticResource Button }"/>
+
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</Window>
