@@ -69,17 +69,18 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>DailyPlannerWPF.App</StartupObject>
@@ -414,9 +415,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\Event.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\NotificationSignal\Notification.mp3" />
